@@ -4,7 +4,7 @@ interface ItemDetailsProps {
     item: Item;
 }
 
-export const ItemDetails: React.FC<ItemDetailsProps> = ({ item }) => {
+export const ItemDetails = ({ item}:ItemDetailsProps ) => {
     return (
         <div className="item-details">
             <img

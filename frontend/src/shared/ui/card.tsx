@@ -1,16 +1,16 @@
 import {type Item} from "../../entities/Item.ts";
-
+import '../styles/card.css'
 interface CardProps {
     item: Item;
     onClick?: () => void;
 }
 
-export const Card: React.FC<CardProps> = ({item, onClick }) => {
+export const Card = ({item, onClick }:CardProps) => {
 
     return (
         <>
             <div className="card" onClick={onClick}>
-                <div className="image">
+                <div className="card__image ">
                     <img src={item.image} alt={item.title} />
                 </div>
                 <h3 className="card__title">{item.title}</h3>

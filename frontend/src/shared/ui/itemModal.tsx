@@ -1,10 +1,12 @@
+import "../styles/itemModal.css"
+
 interface ModalProps {
     isOpen: boolean;
     onClose: () => void;
     children: React.ReactNode;
 }
 
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export const Modal = ({ isOpen, onClose, children }:ModalProps) => {
     if (!isOpen) return null;
 
     return (
@@ -12,6 +14,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="modal-close" onClick={onClose}>Х</button>
                 {children}
+                <button className="modal-pay">Купить</button>
             </div>
         </div>
     );

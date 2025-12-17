@@ -1,9 +1,11 @@
+import "../styles/search.css"
+
 interface SearchProps {
     value: string;
     onChange: (query: string) => void;
 }
 
-export const Search: React.FC<SearchProps> = ({ value, onChange }) => {
+export const Search = ({ value, onChange }:SearchProps) => {
     return (
         <div className="item-search">
             <input

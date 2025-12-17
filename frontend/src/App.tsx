@@ -1,6 +1,5 @@
-import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import {MainPage} from "./pages/MainPages.tsx";
+import {MainPage} from "./pages/MainPage.tsx";
 
 function App() {
 
