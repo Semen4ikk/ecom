@@ -1,6 +1,6 @@
 import {Card} from "../shared/ui/card.tsx";
 import {items} from "../entities/Item.ts";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import {Search} from "../shared/ui/search.tsx";
 import {filterItems} from "../features/filterItems.tsx";
 import {Modal} from "../shared/ui/itemModal.tsx";
@@ -21,22 +21,25 @@ export function MainPage() {
         setSelectedItem(null);
     };
 
-    const stars = Array.from({ length: 100 }, (_, i) => (
-        <div
-            key={i}
-            className="main-page__star"
-            style={{
-                top: `${randomStars(0, 100)}%`,
-                left: `${randomStars(0, 100)}%`,
-                width: `${randomStars(1, 3)}px`,
-                height: `${randomStars(1, 3)}px`,
-                opacity: randomStars(0.4, 1),
-            }}
-        />
-    ));
+    const stars = useMemo(() => {
+        return Array.from({ length: 101 }, (_, i) => (
+            <div
+                key={i}
+                className="main-page__star"
+                style={{
+                    top: `${randomStars(0, 100)}%`,
+                    left: `${randomStars(0, 100)}%`,
+                    width: `${randomStars(1, 3)}px`,
+                    height: `${randomStars(1, 3)}px`,
+                    opacity: randomStars(0.4, 1),
+                }}
+            />
+        ));
+    }, []);
 
     return (
         <div className="main-page">
+            {stars}
             <div className="main-page__search">
                 <Search value={searchQuery} onChange={setSearchQuery} />
             </div>
@@ -48,7 +51,7 @@ export function MainPage() {
             <Modal isOpen={!!selectedItem} onClose={closeModal}>
                 {selectedItem && <ItemDetails item={selectedItem} />}
             </Modal>
-            {stars}
+
         </div>
     );
 }
