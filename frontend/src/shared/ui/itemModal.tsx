@@ -1,4 +1,5 @@
 import "../styles/itemModal.css"
+import {useEffect} from "react";
 
 interface ModalProps {
     isOpen: boolean;
@@ -8,6 +9,17 @@ interface ModalProps {
 
 export const Modal = ({ isOpen, onClose, children }:ModalProps) => {
     if (!isOpen) return null;
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                onClose();
+            }
+        };
+        document.addEventListener('keydown', handleKeyDown);
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [onClose]);
 
     return (
         <div className="modal-overlay" onClick={onClose}>
